@@ -18,6 +18,9 @@ The main Jupyter notebook with all steps: data cleaning, exploratory analysis, f
 WDI_Data.csv
 The dataset used for modeling is downloaded by selecting some features from the original World Bank indicators dataset.
 
+blog_post.md
+It contains the blog post neccessary for the project.
+
 README.md
 This document explaining the project motivation, setup, results, and acknowledgements.
 
