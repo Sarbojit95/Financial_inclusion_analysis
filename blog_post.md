@@ -14,81 +14,65 @@ Business Questions
 
 The analysis aimed to answer four practical questions:
 
-Which factors are most strongly associated with financial account ownership?
+What factors are most strongly associated with higher financial account ownership among countries?
 
-How do digital access and socioeconomic conditions relate to inclusion levels?
+Does digital access play an important role in predicting account ownership??
 
-What are the most important features used by the predictive model?
+Can we build a model that reliably estimates account ownership for a country based on its economic and digital indicators?
 
 What would the model predict for a hypothetical country profile?
 
 Each question is addressed below along with supporting visuals and results.
 
-1. Which factors are most strongly associated with account ownership?
+Q1. Which factors are most strongly associated with account ownership?
 
-I first examined correlations and scatter plots between each indicator and account ownership. Some variables showed very clear upward trends, especially:
+Based on the shap model outputs and correlation plots above, the variable most strongly associated with higher account ownership is GDP per capita. It both has highest SHAP value and also shows strongest positive correlation with target. Hence Countries with higher income levels tend to have much higher financial inclusion. Other features like domestic credit to the private sector, Internet usage, school enrollment, and urban population also show a meaningful positive association according to SHAP plots, suggesting that these also help drive financial account ownership to a certain extent.
 
-GDP per capita
+<img width="1040" height="391" alt="image" src="https://github.com/user-attachments/assets/ed2ef6f5-4c3b-4b2b-85f2-97e1f4fe6797" />
+<img width="617" height="326" alt="image" src="https://github.com/user-attachments/assets/6f8a2f14-410a-4ccf-b64b-c06fd66affea" />
 
-Domestic credit to the private sector
 
-Internet usage
 
-School enrollment
+Q2. How do digital factors influence inclusion?
 
-Urban population share
+The correlation plots and the shap plots in previous question show that digital access plays an important role. Internet usage has one of the highest correlations with account ownership, and it remains a predictor in the tree-based models and in the SHAP values. While mobile subscriptions also help, they do not appear to be as strong as internet usage. Overall, the results suggest that improving access to digital connectivity can support financial inclusion.
 
-Countries with higher income levels, better digital connectivity, and stronger access to education tended to show significantly higher account ownership rates.
+<img width="1388" height="1235" alt="image" src="https://github.com/user-attachments/assets/d54b0276-30da-4d50-8fa6-c4514d74a364" />
+<img width="1040" height="391" alt="image" src="https://github.com/user-attachments/assets/c8b9fa55-6c41-48c2-817e-9212fce1e9bf" />
 
-Referenced visualization: Correlation heatmap + feature-target scatter plots
 
-2. How do socioeconomic and digital factors influence inclusion?
+Q3. Can we build a model that reliably estimates account ownership for a country based on its economic and digital indicators?
 
-To understand broader patterns, I reviewed the distribution of each key feature. Several variables showed a wide spread across countries, especially GDP per capita and digital access indicators.
+Using several regression models (Random Forest, Gradient Boosting, Ridge, Lasso, etc.), the Random Forest model performed the best, achieving an R² of about 0.72 on the test set. This means the model can explain roughly 72% of the variation in account ownership between countries. The most influential predictors in the model were log-transformed GDP per capita, log domestic credit, internet usage, school enrollment, and urban population. This shows that a predictive model can indeed be used to estimate financial inclusion levels using publicly available indicators.
 
-The scatter plots revealed:
+<img width="378" height="236" alt="image" src="https://github.com/user-attachments/assets/de457228-0af3-4cc1-947a-23976b683250" />
 
-Internet usage has a strong increasing relationship with financial inclusion.
 
-Countries with higher life expectancy and school enrollment also tend to have stronger account ownership.
+Q4. What does the model predict for a hypothetical country?
 
-Inflation behaves irregularly, with no strong linear pattern.
+To demonstrate how the model can be used in practice, consider a hypothetical country that wants to estimate its expected level of financial account ownership. Let this country have the following characteristics:
 
-These findings support the idea that financial inclusion rises alongside broader social and economic development.
+GDP per capita: 7,500 USD
 
-Referenced visualization: Histograms and scatter plots
+Domestic credit to private sector: 60 percent of GDP
 
-3. Which features matter most in the predictive model?
+Internet usage: 65 percent of the population
 
-To identify the most influential variables, I used feature importance from Random Forest and SHAP (Shapley values).
+Urban population: 55 percent
 
-The consistently strongest features were:
+School enrollment (secondary): 85 percent
 
-Log GDP per capita
+Life expectancy: 72 years
 
-Log domestic credit to private sector
+Mobile subscriptions: 110 per 100 people
 
-Internet usage
+The model has predicted the value of 74.19
 
-Secondary school enrollment
+The model estimates that this hypothetical country would have an account ownership rate of about 74 percent among adults. This value is consistent with the patterns observed in the dataset, where countries with moderate income levels, improving digital access, and reasonable levels of education and urbanization tend to fall in the 70–80 percent range.
 
-Urban population share
+A predicted value of around 74 percent suggests that the country is performing fairly well in terms of financial inclusion, but there is still room for progress. The relatively strong internet usage, secondary school enrollment, and life expectancy help push the prediction upward, while the moderate levels of GDP per capita and domestic credit keep the estimate below the highest-performing countries.
 
-These features repeatedly ranked at the top across different models, giving confidence that they meaningfully explain account ownership differences.
-
-Referenced visualization: Random Forest feature importance + SHAP summary plot
-
-4. What does the model predict for a hypothetical country?
-
-To see how the model behaves in practice, I created a fictional country with moderate income, improving digital access, and solid education and urbanization levels.
-
-The model predicted an account ownership rate of about:
-
-74 percent
-
-This result is consistent with what we see in real-world data for countries with similar profiles. The estimate suggests that stronger digital connectivity and higher education levels can help push financial inclusion upward even when income levels are not extremely high.
-
-Referenced visualization: Prediction output table
+This example shows how the model can be used to estimate a country’s likely financial inclusion level based on measurable economic and demographic indicators. It provides a way for policymakers to assess where they stand and identify which improvements—such as expanding digital access or strengthening the financial sector—could potentially increase account ownership further.
 
 Conclusion
 
