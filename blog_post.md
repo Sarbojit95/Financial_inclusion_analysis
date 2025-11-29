@@ -1,3 +1,5 @@
+<img width="475" height="228" alt="image" src="https://github.com/user-attachments/assets/d5f20bb3-90ef-4283-8b19-935e9f7bd295" />
+
 What Drives Financial Inclusion Around the World?
 
 Access to financial services has become an essential foundation for economic stability and opportunity. Having a bank account or mobile money account makes it possible for people to save securely, access credit, receive wages, and participate more fully in the economy.
